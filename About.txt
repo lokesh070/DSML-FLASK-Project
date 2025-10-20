@@ -1,0 +1,2 @@
+This is Developed to Understand Simple Model Deployment with Flask Application
+    And Checking the Verified functionality on Postman, Nothing returning into the Web APP
