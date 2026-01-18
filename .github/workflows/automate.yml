@@ -4,6 +4,8 @@ name: Running tests on push to main
 on:
   push:
     branches: [ "main" ]
+  pull_request:
+    branches: ['main']
 
 #group off the job to run
 jobs:
