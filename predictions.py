@@ -13,7 +13,7 @@ def hello_world():
 
 @app.route("/ping")
 def pinger():
-    return {'Message': 'This is a Hello Message'}
+    return {'Message': 'This is a Hello Message from version2'}
 
 @app.route("/predict", methods=['POST'])
 def predict():
