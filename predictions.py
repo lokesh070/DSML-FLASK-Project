@@ -1,18 +1,19 @@
 from flask import Flask, request
 import pickle
+import sklearn
 
 app = Flask(__name__)
+
+model = open('artefacts/classifier.pkl', 'rb')
+clf  = pickle.load(model)
 
 @app.route("/")
 def hello_world():
     return "<p>Hello, World!</p>"
 
-@app.route("/ping", methods=["GET"])
-def ping():
-    return "<h1>Just Checking!</h1>"
-
-model = open('artefacts/classifier.pkl', 'rb')
-clf  = pickle.load(model)
+@app.route("/ping")
+def pinger():
+    return {'Message': 'This is a Hello Message'}
 
 @app.route("/predict", methods=['POST'])
 def predict():
@@ -32,7 +33,7 @@ def predict():
     Credit_History = loan_request['Credit_History']
 
     input_data = [[Gender, Married, ApplicantIncome, LoanAmount, Credit_History]]
-    prediction = clf.predict(input_data)
+    prediction = clf.predict(input_data) ## [[]]
 
     if prediction == 0:
         pred = "Rejected"
@@ -40,3 +41,4 @@ def predict():
         pred = "Accepted"
 
     return {'Loan Approval Status': pred}
+
